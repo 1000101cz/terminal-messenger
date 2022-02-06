@@ -14,9 +14,6 @@ _Bool create_file() {
     }
     printf("\033[1;33m"); // yellow
     fgets(string, 10000, stdin);
-    printf("  -- %s",ctime(&t));
-    printf("\n\n");
-    printf("\033[0m"); // default color
     FILE *raw_file = fopen("/tmp/message.txt", "w");
     int i = 0;
     fputs(string, raw_file);
@@ -24,6 +21,9 @@ _Bool create_file() {
     if (strcmp(string,"!exit\n") == 0) {
         return 1;
     }
+    printf("  -- %s",ctime(&t));
+    printf("\n\n");
+    printf("\033[0m"); // default color
     return 0;
 }
 
