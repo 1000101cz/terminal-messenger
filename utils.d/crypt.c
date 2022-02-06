@@ -6,8 +6,6 @@
 
 /* create not-encrypted message file */
 _Bool create_file() {
-    time_t t;   // not a primitive datatype
-    time(&t);
     unsigned char string[10000];
     for (int i = 0; i < 10000; i++) {
         string[i] = '\0';
@@ -21,6 +19,9 @@ _Bool create_file() {
     if (strcmp(string,"!exit\n") == 0) {
         return 1;
     }
+    time_t t;   // not a primitive datatype
+    time(&t);
+    printf("\033[0;33m"); // yellow
     printf("  -- %s",ctime(&t));
     printf("\n\n");
     printf("\033[0m"); // default color
@@ -195,9 +196,6 @@ void create_file_received(unsigned char *string) {
 
 
 _Bool read_received_message() {
-    time_t t;   // not a primitive datatype
-    time(&t);
-
     FILE *message = fopen("/tmp/message.txt2", "r");
     unsigned char ch;
     printf("\033[1;32m"); // green
@@ -215,6 +213,10 @@ _Bool read_received_message() {
         printf("%c", ch);
         i++;
     }
+
+    time_t t;   // not a primitive datatype
+    time(&t);
+    printf("\033[0;32m"); // green
     printf("  -- %s\n",ctime(&t));
     printf("\033[1;33m"); // yellow
     printf("\n");
